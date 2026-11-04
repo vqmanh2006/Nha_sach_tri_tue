@@ -18,6 +18,7 @@
         .search input { flex:1; border:0; outline:0; padding:13px 15px; font-size:15px; }
         .search button { border:0; background:var(--brand); color:#fff; padding:0 20px; cursor:pointer; font-weight:700; }
         .cart { color:var(--brand); font-weight:700; white-space:nowrap; }
+        .account-link { display:inline-block; border:1px solid var(--brand); border-radius:7px; padding:9px 12px; color:var(--brand); font-weight:700; white-space:nowrap; }
         main { max-width:1180px; margin:auto; padding:28px 24px 60px; }
         .hero { border-radius:18px; padding:42px; color:#fff; background:linear-gradient(110deg,#8b2f13,#d66b28); display:flex; justify-content:space-between; align-items:center; min-height:220px; overflow:hidden; }
         .hero h1 { margin:0 0 10px; font-size:38px; max-width:590px; }
@@ -60,14 +61,14 @@
             </form>
             @if(session('khach_hang_id'))
                 <a class="cart" href="{{ route('cart') }}">🛒 Giỏ hàng</a>
-                <a class="cart" href="{{ route('account') }}">👤 Tài khoản</a>
+                <a class="account-link" href="{{ route('account') }}">👤 Tài khoản</a>
                 <form method="POST" action="{{ route('logout') }}" style="margin:0">
                     @csrf
                     <button class="cart" style="border:0;background:none;padding:0;cursor:pointer;font:inherit">Đăng xuất</button>
                 </form>
             @else
-                <a class="cart" href="{{ route('customer.login') }}">Đăng nhập</a>
-                <a class="cart" href="{{ route('customer.register') }}">Đăng ký</a>
+                <a class="account-link" href="{{ route('customer.login') }}">👤 Đăng nhập</a>
+                <a class="account-link" href="{{ route('customer.register') }}">Đăng ký</a>
             @endif
         </div>
     </header>
