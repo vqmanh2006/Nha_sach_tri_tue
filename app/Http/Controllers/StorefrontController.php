@@ -13,6 +13,14 @@ use Illuminate\Support\Str;
 
 class StorefrontController extends Controller
 {
+    public function account(Request $request)
+    {
+        $customer = KhachHang::with(['donHangs' => fn ($query) => $query->latest('id_don_hang')])
+            ->findOrFail($request->session()->get('khach_hang_id'));
+
+        return view('storefront.account', compact('customer'));
+    }
+
     public function product(SanPham $sanPham)
     {
         abort_if($sanPham->trang_thai === 'ngung_kinh_doanh', 404);

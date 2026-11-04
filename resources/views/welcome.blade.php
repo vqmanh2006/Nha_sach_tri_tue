@@ -60,7 +60,7 @@
             </form>
             @if(session('khach_hang_id'))
                 <a class="cart" href="{{ route('cart') }}">🛒 Giỏ hàng</a>
-                <span class="cart">👤 Tài khoản</span>
+                <a class="cart" href="{{ route('account') }}">👤 Tài khoản</a>
                 <form method="POST" action="{{ route('logout') }}" style="margin:0">
                     @csrf
                     <button class="cart" style="border:0;background:none;padding:0;cursor:pointer;font:inherit">Đăng xuất</button>

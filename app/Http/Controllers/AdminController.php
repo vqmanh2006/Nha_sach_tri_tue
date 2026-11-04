@@ -55,6 +55,13 @@ class AdminController extends Controller
         return back()->with('success', 'Đã cập nhật sản phẩm.');
     }
 
+    public function productDelete(SanPham $sanPham)
+    {
+        $sanPham->delete();
+
+        return back()->with('success', 'Đã xóa sản phẩm.');
+    }
+
     public function categoryStore(Request $request)
     {
         $data = $request->validate(['ten_danh_muc' => ['required', 'max:120'], 'mo_ta' => ['nullable', 'string']]);

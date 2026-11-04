@@ -35,6 +35,7 @@ Route::post('/dang-ky', [AuthController::class, 'customerRegister'])->name('cust
 Route::post('/dang-xuat', [AuthController::class, 'logout'])->name('logout');
 Route::get('/san-pham/{sanPham}', [StorefrontController::class, 'product'])->name('product');
 Route::middleware('customer')->group(function () {
+    Route::get('/tai-khoan', [StorefrontController::class, 'account'])->name('account');
     Route::get('/gio-hang', [StorefrontController::class, 'cart'])->name('cart');
     Route::post('/san-pham/{sanPham}/them-vao-gio', [StorefrontController::class, 'addToCart'])->name('cart.add');
     Route::delete('/gio-hang/{sanPham}', [StorefrontController::class, 'removeFromCart'])->name('cart.remove');
@@ -49,6 +50,7 @@ Route::prefix('quan-tri')->group(function () {
         Route::get('/', [AdminController::class, 'index'])->name('admin.dashboard');
         Route::post('/san-pham', [AdminController::class, 'productStore'])->name('admin.products.store');
         Route::patch('/san-pham/{sanPham}', [AdminController::class, 'productUpdate'])->name('admin.products.update');
+        Route::delete('/san-pham/{sanPham}', [AdminController::class, 'productDelete'])->name('admin.products.delete');
         Route::post('/danh-muc', [AdminController::class, 'categoryStore'])->name('admin.categories.store');
         Route::patch('/khach-hang/{khachHang}/trang-thai', [AdminController::class, 'customerToggle'])->name('admin.customers.toggle');
         Route::patch('/don-hang/{donHang}/trang-thai', [AdminController::class, 'orderStatus'])->name('admin.orders.status');
