@@ -58,7 +58,17 @@
                 @if($danhMucDangChon)<input type="hidden" name="danh_muc" value="{{ $danhMucDangChon }}">@endif
                 <button type="submit">Tìm kiếm</button>
             </form>
-            <a class="cart" href="{{ session('khach_hang_id') ? route('cart') : route('customer.login') }}">🛒 Giỏ hàng</a>
+            @if(session('khach_hang_id'))
+                <a class="cart" href="{{ route('cart') }}">🛒 Giỏ hàng</a>
+                <span class="cart">👤 Tài khoản</span>
+                <form method="POST" action="{{ route('logout') }}" style="margin:0">
+                    @csrf
+                    <button class="cart" style="border:0;background:none;padding:0;cursor:pointer;font:inherit">Đăng xuất</button>
+                </form>
+            @else
+                <a class="cart" href="{{ route('customer.login') }}">Đăng nhập</a>
+                <a class="cart" href="{{ route('customer.register') }}">Đăng ký</a>
+            @endif
         </div>
     </header>
     <main>
