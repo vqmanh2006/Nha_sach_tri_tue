@@ -47,5 +47,10 @@ Route::prefix('quan-tri')->group(function () {
     Route::post('/dang-nhap', [AuthController::class, 'staffLogin'])->name('staff.login.submit');
     Route::middleware('staff')->group(function () {
         Route::get('/', [AdminController::class, 'index'])->name('admin.dashboard');
+        Route::post('/san-pham', [AdminController::class, 'productStore'])->name('admin.products.store');
+        Route::patch('/san-pham/{sanPham}', [AdminController::class, 'productUpdate'])->name('admin.products.update');
+        Route::post('/danh-muc', [AdminController::class, 'categoryStore'])->name('admin.categories.store');
+        Route::patch('/khach-hang/{khachHang}/trang-thai', [AdminController::class, 'customerToggle'])->name('admin.customers.toggle');
+        Route::patch('/don-hang/{donHang}/trang-thai', [AdminController::class, 'orderStatus'])->name('admin.orders.status');
     });
 });
