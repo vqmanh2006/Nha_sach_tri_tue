@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\StorefrontController;
 use App\Models\DanhMuc;
 use App\Models\SanPham;
 use Illuminate\Support\Facades\Route;
@@ -32,6 +33,14 @@ Route::post('/dang-nhap', [AuthController::class, 'customerLogin'])->name('custo
 Route::get('/dang-ky', [AuthController::class, 'customerRegisterForm'])->name('customer.register');
 Route::post('/dang-ky', [AuthController::class, 'customerRegister'])->name('customer.register.submit');
 Route::post('/dang-xuat', [AuthController::class, 'logout'])->name('logout');
+Route::get('/san-pham/{sanPham}', [StorefrontController::class, 'product'])->name('product');
+Route::middleware('customer')->group(function () {
+    Route::get('/gio-hang', [StorefrontController::class, 'cart'])->name('cart');
+    Route::post('/san-pham/{sanPham}/them-vao-gio', [StorefrontController::class, 'addToCart'])->name('cart.add');
+    Route::delete('/gio-hang/{sanPham}', [StorefrontController::class, 'removeFromCart'])->name('cart.remove');
+    Route::get('/thanh-toan', [StorefrontController::class, 'checkout'])->name('checkout');
+    Route::post('/thanh-toan', [StorefrontController::class, 'placeOrder'])->name('checkout.place');
+});
 
 Route::prefix('quan-tri')->group(function () {
     Route::get('/dang-nhap', [AuthController::class, 'staffLoginForm'])->name('staff.login');

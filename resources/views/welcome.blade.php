@@ -58,7 +58,7 @@
                 @if($danhMucDangChon)<input type="hidden" name="danh_muc" value="{{ $danhMucDangChon }}">@endif
                 <button type="submit">Tìm kiếm</button>
             </form>
-            <a class="cart" href="{{ session('khach_hang_id') ? '/api/health' : route('customer.login') }}">👤 {{ session('khach_hang_id') ? 'Tài khoản' : 'Đăng nhập' }}</a>
+            <a class="cart" href="{{ session('khach_hang_id') ? route('cart') : route('customer.login') }}">🛒 Giỏ hàng</a>
         </div>
     </header>
     <main>
@@ -92,7 +92,7 @@
                                 <div class="author">{{ $sanPham->tac_gia ?: 'Sản phẩm Nhà Sách Trí Tuệ' }}</div>
                                 <div class="bottom">
                                     <div><div class="price">{{ number_format($sanPham->gia_ban, 0, ',', '.') }}đ</div><div class="stock">Còn {{ $sanPham->so_luong_ton }} sản phẩm</div></div>
-                                    <a class="cart" href="/api/san-pham/{{ $sanPham->id_san_pham }}">Chi tiết →</a>
+                                    <a class="cart" href="{{ route('product', $sanPham) }}">Chi tiết →</a>
                                 </div>
                             </div>
                         </article>
