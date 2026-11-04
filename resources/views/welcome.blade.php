@@ -58,7 +58,7 @@
                 @if($danhMucDangChon)<input type="hidden" name="danh_muc" value="{{ $danhMucDangChon }}">@endif
                 <button type="submit">Tìm kiếm</button>
             </form>
-            <a class="cart" href="/api/health">🛒 Giỏ hàng</a>
+            <a class="cart" href="{{ session('khach_hang_id') ? '/api/health' : route('customer.login') }}">👤 {{ session('khach_hang_id') ? 'Tài khoản' : 'Đăng nhập' }}</a>
         </div>
     </header>
     <main>

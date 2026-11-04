@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\DanhMuc;
+use App\Models\NhanVien;
 use App\Models\SanPham;
 use Illuminate\Database\Seeder;
 
@@ -10,6 +11,14 @@ class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
+        NhanVien::updateOrCreate(
+            ['dia_chi_email' => 'admin@nhasachtritue.vn'],
+            ['ho_ten' => 'Quản trị viên', 'mat_khau' => 'Admin@123456', 'vai_tro' => 'quan_tri', 'dang_hoat_dong' => true],
+        );
+        NhanVien::updateOrCreate(
+            ['dia_chi_email' => 'nhanvien@nhasachtritue.vn'],
+            ['ho_ten' => 'Nhân viên bán hàng', 'mat_khau' => 'NhanVien@123456', 'vai_tro' => 'nhan_vien', 'dang_hoat_dong' => true],
+        );
         $sach = DanhMuc::firstOrCreate(['ten_danh_muc' => 'Sach'], ['mo_ta' => 'Sach va an pham']);
         $doDung = DanhMuc::firstOrCreate(['ten_danh_muc' => 'Do dung hoc tap'], ['mo_ta' => 'Dung cu hoc tap']);
 
